@@ -1,0 +1,47 @@
+scalar DATE
+scalar UUID
+
+type User {
+  id: UUID!
+  userName: String!
+  password: String!
+  access: String!
+  lang: String
+  createdAt: DATE!
+  updatedAt: DATE
+}
+
+type UserAuth {
+  id: UUID!
+  token: String!
+  lang: String
+}
+
+input CreateUserInput {
+  userName: String!
+  password: String!
+  lang: String
+}
+
+input UpdateUserInput {
+  id: UUID!
+  password: String
+  lang: String
+}
+
+input LoginInput {
+  userName: String!
+  password: String!
+}
+
+type Query {
+  user(id: UUID!): User
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): UserAuth!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  login(loginInput: LoginInput!): UserAuth!
+  validate: Boolean!
+  removeUser(id: UUID!): User
+}

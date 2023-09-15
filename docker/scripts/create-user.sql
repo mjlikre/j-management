@@ -1,0 +1,4 @@
+CREATE USER postgres WITH PASSWORD 'postgres';
+CREATE DATABASE pet-template-poc;
+GRANT ALL PRIVILEGES ON DATABASE pet-template-poc TO postgres;
+ALTER USER postgres CREATEDB CREATEROLE;
