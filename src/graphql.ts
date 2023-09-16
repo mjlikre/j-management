@@ -45,7 +45,7 @@ export class CreateWorkerInput {
     firstName: string;
     lastName: string;
     phone?: Nullable<string>;
-    salaryAmount?: Nullable<number>;
+    salaryAmount: number;
 }
 
 export class UpdateWorkerInput {
@@ -135,7 +135,7 @@ export class Worker {
     firstName: string;
     lastName: string;
     phone?: Nullable<string>;
-    createdAt?: Nullable<DATE>;
+    createdAt: DATE;
     updatedAt?: Nullable<DATE>;
     debtAmount?: Nullable<number>;
     salaryAmount: number;

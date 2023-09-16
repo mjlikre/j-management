@@ -3,6 +3,7 @@ import { DebtPaymentService } from './debt-payment.service'
 import { DebtPaymentResolver } from './debt-payment.resolver'
 import { TYPES } from 'src/app.types'
 import { DebtPaymentRepository } from './debt-payment.repository'
+import { WorkerRepository } from 'src/worker/worker.repository'
 
 @Module({
   providers: [
@@ -11,6 +12,10 @@ import { DebtPaymentRepository } from './debt-payment.repository'
     {
       provide: TYPES.DebtPayment,
       useClass: DebtPaymentRepository
+    },
+    {
+      provide: TYPES.Worker,
+      useClass: WorkerRepository
     }
   ],
   exports: [DebtPaymentService]

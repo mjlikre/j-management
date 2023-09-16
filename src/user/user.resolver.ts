@@ -35,8 +35,9 @@ export class UserResolver {
   }
 
   @Mutation('login')
-  login(@Args('loginInfo') loginInfo: Omit<CreateUserInput, 'lang'>) {
-    return this.userService.validateUser(loginInfo)
+  login(@Args('loginInput') loginInput: Omit<CreateUserInput, 'lang'>) {
+    console.log(loginInput)
+    return this.userService.validateUser(loginInput)
   }
 
   @Mutation('validate')

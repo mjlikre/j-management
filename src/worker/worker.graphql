@@ -3,7 +3,7 @@ type Worker {
   firstName: String!
   lastName: String!
   phone: String
-  createdAt: DATE
+  createdAt: DATE!
   updatedAt: DATE
   debtAmount: Int
   salaryAmount: Int!
@@ -17,7 +17,7 @@ input CreateWorkerInput {
   firstName: String!
   lastName: String!
   phone: String
-  salaryAmount: Int
+  salaryAmount: Int!
 }
 
 input UpdateWorkerInput {
