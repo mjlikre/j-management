@@ -1,0 +1,40 @@
+type Worker {
+  id: UUID
+  firstName: String!
+  lastName: String!
+  phone: String
+  createdAt: DATE
+  updatedAt: DATE
+  debtAmount: Int
+  salaryAmount: Int!
+  debtPaymentAmount: Int!
+  debt: [Debt!]!
+  salary: [Salary!]!
+  debtPayment: [DebtPayment!]!
+}
+
+input CreateWorkerInput {
+  firstName: String!
+  lastName: String!
+  phone: String
+  salaryAmount: Int
+}
+
+input UpdateWorkerInput {
+  id: UUID!
+  salaryAmount: Int
+  debtAmount: Int
+  debtPaymentAmount: Int
+}
+
+type Query {
+  workers: [Worker!]!
+  worker(id: UUID!): Worker
+}
+
+type Mutation {
+  createWorker(createWorkerInput: CreateWorkerInput!): Worker!
+  updateWorker(updateWorkerInput: UpdateWorkerInput!): Worker!
+  removeWorker(id: UUID!): Worker
+  updateWorkerDebt(id: UUID!): Worker!
+}

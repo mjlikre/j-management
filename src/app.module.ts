@@ -13,6 +13,10 @@ import { CustomDateScalar } from './resources/date-scalar'
 import { CustomUuidScalar } from './resources/uuid-scalar'
 
 import { UserModule } from './user/user.module'
+import { WorkerModule } from './worker/worker.module'
+import { DebtModule } from './debt/debt.module'
+import { SalaryModule } from './salary/salary.module'
+import { DebtPaymentModule } from './debt-payment/debt-payment.module'
 
 @Module({
   imports: [
@@ -29,7 +33,11 @@ import { UserModule } from './user/user.module'
     UserModule,
     EnvValidation,
     AuthModule,
-    PrismaModule
+    PrismaModule,
+    WorkerModule,
+    DebtModule,
+    SalaryModule,
+    DebtPaymentModule
   ],
   controllers: [AppController],
   providers: [AppService]

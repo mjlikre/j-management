@@ -1,0 +1,18 @@
+type Debt {
+  id: UUID!
+  amount: Int!
+  createdAt: DATE!
+}
+
+input CreateDebtInput {
+  amount: Int!
+  workerId: UUID!
+}
+
+type Query {
+  getWorkerDebts(workerId: UUID!): [Debt!]!
+}
+
+type Mutation {
+  createDebt(createDebtInput: CreateDebtInput!): Debt!
+}

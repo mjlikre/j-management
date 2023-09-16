@@ -1,0 +1,20 @@
+type Salary {
+  id: UUID!
+  salaryPaid: Int!
+  salaryAmount: Int!
+  createdAt: DATE!
+}
+
+input SalaryInput {
+  salaryPaid: Int!
+  salaryAmount: Int!
+  workerId: UUID!
+}
+
+type Query {
+  getWorkerSalaries(workedId: UUID!): [Salary!]!
+}
+
+type Mutation {
+  createSalary(salaryInput: SalaryInput!): Salary!
+}
