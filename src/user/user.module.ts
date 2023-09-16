@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common'
+import { TYPES } from 'src/app.types'
+
 import { UserService } from './user.service'
 import { UserResolver } from './user.resolver'
 import { UserRepository } from './user.repository'
-import { TYPES } from 'src/app.types'
 
 @Module({
   providers: [

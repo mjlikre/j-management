@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common'
+import { TYPES } from '../app.types'
+
 import { CreateUserInput } from './dto/create-user.input'
 import { UpdateUserInput } from './dto/update-user.input'
 import { IUserRepository } from './user.types'
-import { TYPES } from '../app.types'
-import { UserAuthOutput } from './dto/user.output'
-import { User } from '@prisma/client'
+import { UserAuthOutput, UserOutput } from './dto/user.output'
 
 @Injectable()
 export class UserService {
@@ -16,11 +16,11 @@ export class UserService {
     return await this.userRepository.createUser(data)
   }
 
-  async findOne(id: string): Promise<User | null> {
+  async findOne(id: string): Promise<UserOutput | null> {
     return await this.userRepository.getUser(id)
   }
 
-  async update(updateUserInput: UpdateUserInput): Promise<User | null> {
+  async update(updateUserInput: UpdateUserInput): Promise<UserOutput | null> {
     const { id, ...updateUserData } = updateUserInput
     return await this.userRepository.updateUser({
       id: id,

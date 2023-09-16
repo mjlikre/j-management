@@ -1,20 +1,16 @@
 import { HttpStatus, Injectable } from '@nestjs/common'
+import { HttpException } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+import * as jwt from 'jwt-simple'
+import * as bcrypt from 'bcryptjs'
+
 import { PrismaService } from '../prisma/prisma.service'
 import { CreateUserInput } from './dto/create-user.input'
 import { UpdateUserInput } from './dto/update-user.input'
 import { UserAuthOutput, UserOutput } from './dto/user.output'
 import { IUserRepository } from './user.types'
-import { ConfigService } from '@nestjs/config'
 import { IEnv } from '../env.types'
-import { HttpException } from '@nestjs/common'
-import * as jwt from 'jwt-simple'
-import * as bcrypt from 'bcryptjs'
-
-const hashPassword = async (password: string) => {
-  const salt = await bcrypt.genSalt()
-  const hash = await bcrypt.hash(password, salt)
-  return hash
-}
+import { hashPassword } from './util'
 
 @Injectable()
 export class UserRepository implements IUserRepository {
