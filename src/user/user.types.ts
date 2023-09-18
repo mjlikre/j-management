@@ -10,8 +10,7 @@ interface IUserRepository {
     id: string
     data: Omit<UpdateUserInput, 'id'>
   }) => Promise<UserOutput>
-  validateUser: (data: CreateUserInput) => Promise<UserAuthOutput>
-  ifStillValid: () => Promise<boolean>
+  userLogin: (data: CreateUserInput) => Promise<UserAuthOutput>
 }
 
 export { IUserRepository }

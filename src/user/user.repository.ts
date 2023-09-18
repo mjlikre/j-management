@@ -82,7 +82,7 @@ export class UserRepository implements IUserRepository {
     }
   }
 
-  async validateUser(data: CreateUserInput): Promise<UserAuthOutput> {
+  async userLogin(data: CreateUserInput): Promise<UserAuthOutput> {
     const { userName, password } = data
     const user = await this.prismaService.user.findFirst({
       where: { userName: userName }
@@ -95,9 +95,5 @@ export class UserRepository implements IUserRepository {
       ...(await this.tokenForUser(user.id)),
       lang: user.lang
     }
-  }
-
-  async ifStillValid(): Promise<boolean> {
-    return true
   }
 }

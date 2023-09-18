@@ -68,7 +68,9 @@ export abstract class IQuery {
 
     abstract getWorkerSalaries(workedId: UUID): Salary[] | Promise<Salary[]>;
 
-    abstract user(id: UUID): Nullable<User> | Promise<Nullable<User>>;
+    abstract user(id: UUID): User | Promise<User>;
+
+    abstract validateUser(): User | Promise<User>;
 
     abstract workers(): Worker[] | Promise<Worker[]>;
 
@@ -87,8 +89,6 @@ export abstract class IMutation {
     abstract updateUser(updateUserInput: UpdateUserInput): User | Promise<User>;
 
     abstract login(loginInput: LoginInput): UserAuth | Promise<UserAuth>;
-
-    abstract validate(): boolean | Promise<boolean>;
 
     abstract removeUser(id: UUID): Nullable<User> | Promise<Nullable<User>>;
 

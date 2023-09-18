@@ -32,11 +32,7 @@ export class UserService {
     return await this.userRepository.deleteUser(id)
   }
 
-  async validateUser(data: CreateUserInput): Promise<UserAuthOutput> {
-    return await this.userRepository.validateUser(data)
-  }
-
-  async ifStillValid(): Promise<boolean> {
-    return await this.userRepository.ifStillValid()
+  async userLogin(data: CreateUserInput): Promise<UserAuthOutput> {
+    return await this.userRepository.userLogin(data)
   }
 }

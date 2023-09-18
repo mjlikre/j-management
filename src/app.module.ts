@@ -17,12 +17,22 @@ import { WorkerModule } from './worker/worker.module'
 import { DebtModule } from './debt/debt.module'
 import { SalaryModule } from './salary/salary.module'
 import { DebtPaymentModule } from './debt-payment/debt-payment.module'
+import { IncomingMessage, ServerResponse } from 'http'
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
+      context: ({
+        res,
+        req
+      }: {
+        req: IncomingMessage
+        res: ServerResponse
+      }) => {
+        return { res, req }
+      },
       typePaths: ['./**/*.graphql'],
       definitions: {
         path: join(process.cwd(), 'src/graphql.ts'),
@@ -30,10 +40,10 @@ import { DebtPaymentModule } from './debt-payment/debt-payment.module'
       },
       resolvers: { DATE: CustomDateScalar, UUID: CustomUuidScalar }
     }),
-    UserModule,
     EnvValidation,
     AuthModule,
     PrismaModule,
+    UserModule,
     WorkerModule,
     DebtModule,
     SalaryModule,

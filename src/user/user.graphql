@@ -35,13 +35,14 @@ input LoginInput {
 }
 
 type Query {
-  user(id: UUID!): User
+  user(id: UUID!): User!
+  validateUser: User!
+
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): UserAuth!
   updateUser(updateUserInput: UpdateUserInput!): User!
   login(loginInput: LoginInput!): UserAuth!
-  validate: Boolean!
   removeUser(id: UUID!): User
 }

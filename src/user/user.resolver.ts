@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql'
+import { Resolver, Query, Mutation, Args, Context } from '@nestjs/graphql'
 import { UseGuards } from '@nestjs/common'
 
 import { AuthGuard } from 'src/auth/auth.guard'
@@ -6,43 +6,54 @@ import { AuthGuard } from 'src/auth/auth.guard'
 import { UserService } from './user.service'
 import { CreateUserInput } from './dto/create-user.input'
 import { UpdateUserInput } from './dto/update-user.input'
+import { IncomingMessage, ServerResponse } from 'http'
 
 @Resolver('User')
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
   @Mutation('createUser')
-  create(@Args('createUserInput') createUserInput: CreateUserInput) {
-    return this.userService.create(createUserInput)
+  async create(@Args('createUserInput') createUserInput: CreateUserInput) {
+    return await this.userService.create(createUserInput)
   }
 
   @Query('user')
   @UseGuards(AuthGuard)
-  findOne(@Args('id') id: string) {
-    return this.userService.findOne(id)
+  async findOne(@Args('id') id: string) {
+    return await this.userService.findOne(id)
   }
 
   @Mutation('updateUser')
   @UseGuards(AuthGuard)
-  update(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
-    return this.userService.update(updateUserInput)
+  async update(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
+    return await this.userService.update(updateUserInput)
   }
 
   @Mutation('removeUser')
   @UseGuards(AuthGuard)
-  remove(@Args('id') id: string) {
-    return this.userService.remove(id)
+  async remove(@Args('id') id: string) {
+    return await this.userService.remove(id)
   }
 
   @Mutation('login')
-  login(@Args('loginInput') loginInput: Omit<CreateUserInput, 'lang'>) {
-    console.log(loginInput)
-    return this.userService.validateUser(loginInput)
+  async login(
+    @Context() context: { req: IncomingMessage; res: ServerResponse },
+    @Args('loginInput') loginInput: Omit<CreateUserInput, 'lang'>
+  ) {
+    const userAuth = await this.userService.userLogin(loginInput)
+    if (userAuth) {
+      context.res.setHeader('Set-Cookie', `J_COOKIE=${userAuth.token}`)
+    }
+
+    return userAuth
   }
 
-  @Mutation('validate')
+  @Query('validateUser')
   @UseGuards(AuthGuard)
-  isValid() {
-    return this.userService.ifStillValid()
+  async validateUser(
+    @Context() context: { req: IncomingMessage & { user: { sub: string } } }
+  ) {
+    const { sub: userId } = context.req.user
+    return await this.userService.findOne(userId)
   }
 }
