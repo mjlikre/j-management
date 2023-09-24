@@ -14,5 +14,5 @@ type Query {
 }
 
 type Mutation {
-  createDebtPayment(createDebtPaymentInput: CreateDebtPaymentInput!): DebtPayment!
+  createDebtPayment(createDebtPaymentInput: CreateDebtPaymentInput!): Worker!
 }

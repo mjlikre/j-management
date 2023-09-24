@@ -74,13 +74,13 @@ export abstract class IQuery {
 
     abstract workers(): Worker[] | Promise<Worker[]>;
 
-    abstract worker(id: UUID): Nullable<Worker> | Promise<Nullable<Worker>>;
+    abstract worker(id: UUID): Worker | Promise<Worker>;
 }
 
 export abstract class IMutation {
-    abstract createDebtPayment(createDebtPaymentInput: CreateDebtPaymentInput): DebtPayment | Promise<DebtPayment>;
+    abstract createDebtPayment(createDebtPaymentInput: CreateDebtPaymentInput): Worker | Promise<Worker>;
 
-    abstract createDebt(createDebtInput: CreateDebtInput): Debt | Promise<Debt>;
+    abstract createDebt(createDebtInput: CreateDebtInput): Worker | Promise<Worker>;
 
     abstract createSalary(salaryInput: SalaryInput): Salary | Promise<Salary>;
 
@@ -131,13 +131,13 @@ export class UserAuth {
 }
 
 export class Worker {
-    id?: Nullable<UUID>;
+    id: UUID;
     firstName: string;
     lastName: string;
     phone?: Nullable<string>;
     createdAt: DATE;
     updatedAt?: Nullable<DATE>;
-    debtAmount?: Nullable<number>;
+    debtAmount: number;
     salaryAmount: number;
     debtPaymentAmount: number;
     debt: Debt[];

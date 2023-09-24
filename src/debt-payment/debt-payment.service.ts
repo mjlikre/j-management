@@ -19,17 +19,14 @@ export class DebtPaymentService {
       workerId
     )
     const newDebtPaymentAmount = debtPaymentAmount + amount
-
+    await this.debtPaymentRepository.createDebtPayment(createDebtPaymentInput)
     await this.workerRepository.updateWorker({
       id: workerId,
       data: {
         debtPaymentAmount: newDebtPaymentAmount
       }
     })
-
-    return await this.debtPaymentRepository.createDebtPayment(
-      createDebtPaymentInput
-    )
+    return this.workerRepository.getWorker(workerId)
   }
 
   async getWorkerDebtPayments(workerId: string) {

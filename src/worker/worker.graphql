@@ -1,11 +1,11 @@
 type Worker {
-  id: UUID
+  id: UUID!
   firstName: String!
   lastName: String!
   phone: String
   createdAt: DATE!
   updatedAt: DATE
-  debtAmount: Int
+  debtAmount: Int!
   salaryAmount: Int!
   debtPaymentAmount: Int!
   debt: [Debt!]!
@@ -29,7 +29,7 @@ input UpdateWorkerInput {
 
 type Query {
   workers: [Worker!]!
-  worker(id: UUID!): Worker
+  worker(id: UUID!): Worker!
 }
 
 type Mutation {

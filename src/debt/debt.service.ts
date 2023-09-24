@@ -18,7 +18,8 @@ export class DebtService {
       id: workerId,
       data: { debtAmount: newDebtAmount }
     })
-    return await this.debtRepository.createDebt(createDebtInput)
+    await this.debtRepository.createDebt(createDebtInput)
+    return this.workerRepository.getWorker(workerId)
   }
 
   async getWorkerDebts(workerId: string) {
