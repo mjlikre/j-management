@@ -11,11 +11,13 @@
 export class CreateDebtPaymentInput {
     amount: number;
     workerId: UUID;
+    date: DATE;
 }
 
 export class CreateDebtInput {
     amount: number;
     workerId: UUID;
+    date: DATE;
 }
 
 export class SalaryInput {
@@ -58,6 +60,7 @@ export class UpdateWorkerInput {
 export class DebtPayment {
     id: UUID;
     amount: number;
+    date: DATE;
     createdAt: DATE;
 }
 
@@ -105,6 +108,7 @@ export class Debt {
     id: UUID;
     amount: number;
     createdAt: DATE;
+    date: DATE;
 }
 
 export class Salary {
@@ -140,9 +144,9 @@ export class Worker {
     debtAmount: number;
     salaryAmount: number;
     debtPaymentAmount: number;
-    debt: Debt[];
-    salary: Salary[];
-    debtPayment: DebtPayment[];
+    debts: Debt[];
+    salaries: Salary[];
+    debtPayments: DebtPayment[];
 }
 
 export type DATE = any;

@@ -8,9 +8,9 @@ type Worker {
   debtAmount: Int!
   salaryAmount: Int!
   debtPaymentAmount: Int!
-  debt: [Debt!]!
-  salary: [Salary!]!
-  debtPayment: [DebtPayment!]!
+  debts: [Debt!]!
+  salaries: [Salary!]!
+  debtPayments: [DebtPayment!]!
 }
 
 input CreateWorkerInput {

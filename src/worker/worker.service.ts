@@ -57,4 +57,12 @@ export class WorkerService {
       data: { debtAmount, debtPaymentAmount }
     })
   }
+
+  async getDebt(id: string) {
+    return await this.debtService.getWorkerDebts(id)
+  }
+
+  async getDebtPayments(id: string) {
+    return await this.debtPaymentService.getWorkerDebtPayments(id)
+  }
 }

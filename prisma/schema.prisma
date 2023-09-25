@@ -36,6 +36,7 @@ model Debt {
   id        String   @id @default(uuid())
   amount    Int
   createdAt DateTime @default(now())
+  date      DateTime @default(now())
   workerId  String
   worker    Worker   @relation(fields: [workerId], references: [id])
 }
@@ -52,6 +53,7 @@ model Salary {
 model DebtPayment {
   id        String   @id @default(uuid())
   amount    Int
+  date      DateTime @default(now())
   createdAt DateTime @default(now())
   Worker    Worker   @relation(fields: [workerId], references: [id])
   workerId  String

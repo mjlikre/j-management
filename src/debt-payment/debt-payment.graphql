@@ -1,12 +1,14 @@
 type DebtPayment {
   id: UUID!
   amount: Int!
+  date: DATE!
   createdAt: DATE!
 }
 
 input CreateDebtPaymentInput {
   amount: Int!
   workerId: UUID!
+  date: DATE!
 }
 
 type Query {

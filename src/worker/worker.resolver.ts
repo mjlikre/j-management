@@ -1,9 +1,17 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql'
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent
+} from '@nestjs/graphql'
 import { WorkerService } from './worker.service'
 import { CreateWorkerInput } from './dto/create-worker.input'
 import { UpdateWorkerInput } from './dto/update-worker.input'
 import { UseGuards } from '@nestjs/common'
 import { AuthGuard } from 'src/auth/auth.guard'
+import { Worker } from 'src/graphql'
 
 @Resolver('Worker')
 export class WorkerResolver {
@@ -43,5 +51,17 @@ export class WorkerResolver {
   @UseGuards(AuthGuard)
   updateDebt(@Args('id') id: string) {
     return this.workerService.updateDebt(id)
+  }
+
+  @ResolveField('debts')
+  async getDebt(@Parent() worker: Worker) {
+    const { id } = worker
+    return this.workerService.getDebt(id)
+  }
+
+  @ResolveField('debtPayments')
+  async getDebtPayments(@Parent() worker: Worker) {
+    const { id } = worker
+    return this.workerService.getDebtPayments(id)
   }
 }
