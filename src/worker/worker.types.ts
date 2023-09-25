@@ -6,7 +6,7 @@ export interface IWorkerRepository {
   createWorker: (data: CreateWorkerInput) => Promise<WorkerOutput | null>
   getWorker: (id: string) => Promise<WorkerOutput>
   getWorkers: () => Promise<WorkerOutput[]>
-  deleteWorker: (id: string) => Promise<void>
+  deleteWorker: (id: string) => Promise<WorkerOutput[]>
   updateWorker: (params: {
     id: string
     data: Omit<UpdateWorkerInput, 'id'>

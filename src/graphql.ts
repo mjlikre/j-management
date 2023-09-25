@@ -48,6 +48,7 @@ export class CreateWorkerInput {
     lastName: string;
     phone?: Nullable<string>;
     salaryAmount: number;
+    debtAmount: number;
 }
 
 export class UpdateWorkerInput {
@@ -99,7 +100,7 @@ export abstract class IMutation {
 
     abstract updateWorker(updateWorkerInput: UpdateWorkerInput): Worker | Promise<Worker>;
 
-    abstract removeWorker(id: UUID): Nullable<Worker> | Promise<Nullable<Worker>>;
+    abstract removeWorker(id: UUID): Worker[] | Promise<Worker[]>;
 
     abstract updateWorkerDebt(id: UUID): Worker | Promise<Worker>;
 }

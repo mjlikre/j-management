@@ -18,6 +18,7 @@ input CreateWorkerInput {
   lastName: String!
   phone: String
   salaryAmount: Int!
+  debtAmount: Int!
 }
 
 input UpdateWorkerInput {
@@ -35,6 +36,6 @@ type Query {
 type Mutation {
   createWorker(createWorkerInput: CreateWorkerInput!): Worker!
   updateWorker(updateWorkerInput: UpdateWorkerInput!): Worker!
-  removeWorker(id: UUID!): Worker
+  removeWorker(id: UUID!): [Worker!]!
   updateWorkerDebt(id: UUID!): Worker!
 }

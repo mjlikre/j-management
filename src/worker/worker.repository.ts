@@ -48,10 +48,12 @@ export class WorkerRepository implements IWorkerRepository {
     return workers
   }
 
-  async deleteWorker(id: string): Promise<void> {
+  async deleteWorker(id: string): Promise<WorkerOutput[]> {
     await this.prismaService.worker.delete({
       where: { id: id }
     })
+    const workers = await this.prismaService.worker.findMany()
+    return workers
   }
 
   async updateWorker(params: {
