@@ -6,6 +6,7 @@ interface IDebtPaymentRepository {
     data: CreateDebtPaymentInput
   ) => Promise<DebtPaymentOutput | null>
   getWorkerDebtPayments: (workerId: string) => Promise<DebtPaymentOutput[]>
+  deleteWorkerDebtPayments: (workerId: string) => Promise<void>
 }
 
 export { IDebtPaymentRepository }

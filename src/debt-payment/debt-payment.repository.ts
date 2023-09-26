@@ -27,4 +27,10 @@ export class DebtPaymentRepository implements IDebtPaymentRepository {
     })
     return debts
   }
+
+  async deleteWorkerDebtPayments(workerId: string): Promise<void> {
+    await this.prismaService.debtPayment.deleteMany({
+      where: { workerId }
+    })
+  }
 }

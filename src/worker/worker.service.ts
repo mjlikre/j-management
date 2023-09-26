@@ -37,6 +37,8 @@ export class WorkerService {
   }
 
   async remove(id: string) {
+    await this.debtService.deleteWorkerDebts(id)
+    await this.debtPaymentService.deleteWorkerDebtPayments(id)
     return await this.workerRepository.deleteWorker(id)
   }
 
