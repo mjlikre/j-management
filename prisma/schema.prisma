@@ -24,6 +24,7 @@ model Worker {
   phone             String?
   createdAt         DateTime      @default(now())
   updatedAt         DateTime?     @updatedAt
+  startDate         DateTime      @default(now())
   debtAmount        Int
   debtPaymentAmount Int
   salaryAmount      Int

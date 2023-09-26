@@ -49,6 +49,7 @@ export class CreateWorkerInput {
     phone?: Nullable<string>;
     salaryAmount: number;
     debtAmount: number;
+    startDate: DATE;
 }
 
 export class UpdateWorkerInput {
@@ -148,6 +149,7 @@ export class Worker {
     debts: Debt[];
     salaries: Salary[];
     debtPayments: DebtPayment[];
+    startDate: DATE;
 }
 
 export type DATE = any;

@@ -11,6 +11,7 @@ type Worker {
   debts: [Debt!]!
   salaries: [Salary!]!
   debtPayments: [DebtPayment!]!
+  startDate: DATE!
 }
 
 input CreateWorkerInput {
@@ -19,6 +20,7 @@ input CreateWorkerInput {
   phone: String
   salaryAmount: Int!
   debtAmount: Int!
+  startDate: DATE!
 }
 
 input UpdateWorkerInput {
